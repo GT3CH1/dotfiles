@@ -9,10 +9,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 
 " Enable syntax highlighting
-syntax on
+syntax enable
 
 " Show numbers
 set number
@@ -32,7 +35,6 @@ set is
 set showcmd
 set shiftwidth=4
 set encoding=utf-8
-
 set wildmenu
 
 " Make the numbers red, background a dark gray, and comments light blue
@@ -65,8 +67,15 @@ nnoremap <Leader>n :set number!<CR>
 
 nnoremap <Leader>s <C-X>
 
+" vim-gutter configuration
+highlight! link SignColumn LineNr
+
+let g:gitgutter_set_sign_backgrounds = 1
+
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 
-
-
-
+" airline configuration
+let g:airline_theme='onedark'
