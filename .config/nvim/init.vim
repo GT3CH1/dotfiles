@@ -6,12 +6,12 @@ filetype indent on
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-
 call vundle#begin()
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 call vundle#end()
 
 " Enable syntax highlighting
@@ -37,6 +37,9 @@ set shiftwidth=4
 set encoding=utf-8
 set wildmenu
 
+set ffs=unix
+set ff=unix
+
 " Make the numbers red, background a dark gray, and comments light blue
 hi LineNr ctermfg=red
 hi Comment ctermfg=lightblue
@@ -56,7 +59,6 @@ nnoremap x ^<C-V>$x
 " Lazy way to move to next file
 nnoremap n :n<CR>
 
-noremap <F3> :Autoformat<CR>
 " Maps our special character to '
 let mapleader=","
 
@@ -67,11 +69,10 @@ nnoremap <Leader>n :set number!<CR>
 
 nnoremap <Leader>s <C-X>
 
+
 " vim-gutter configuration
 highlight! link SignColumn LineNr
-
 let g:gitgutter_set_sign_backgrounds = 1
-
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
@@ -79,3 +80,26 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " airline configuration
 let g:airline_theme='onedark'
+
+" vim-format configuration
+noremap <F3> :Autoformat<CR>
+
+noremap <F4> :call Tab2Space()<CR>
+noremap <F5> :call Space2Tab()<CR>
+
+" Custom functions
+
+
+" Converts all spaces to tabs
+function Space2Tab()
+    set tabstop=4
+    set noexpandtab
+    %retab!
+endfunction
+
+" Converts all tabs to spaces.
+function Tab2Space()
+    set tabstop=4
+    set expandtab
+    %retab!
+endfunction
